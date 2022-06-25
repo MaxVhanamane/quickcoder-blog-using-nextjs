@@ -1,0 +1,7 @@
+{
+    "title":"how to learn javascript",
+    "description":" You can also add multiple parameters to the tracking link by separating them with a. Here is an example: Destination URL: www.yoursite.com?myparam1={id1}&myparam2={id2} Tracking link: www.go.clickmeter.com/38w2?id1=123&id2=abc After click: www.yoursite.com?myparam1=123&myparam2=abc An URL (Uniform resource locator) is a set of strings to define a location in the World Wide Web (www). It can also be used to pass information to the destination. Any word after the question mark (?) in a URL is considered to be a parameter which can hold values. The value for the corresponding parameter is given after the symbol  (=). Multiple parameters can be passed through the URL by separating them with multiple  Read more about passing parameter through URL.",
+    "author":"Max",
+    "slug":"how-to-learn-javascript"
+    
+}

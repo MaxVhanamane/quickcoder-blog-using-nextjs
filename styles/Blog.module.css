@@ -1,6 +1,6 @@
-.container {
+/* .container {
   padding: 2rem 0;
-}
+} */
 .main {
   min-height: 100vh;
   /* padding: 4rem 0; */
@@ -15,4 +15,11 @@
 .main h3:hover {
   cursor: pointer;
   color: blue;
+}
+.blogItem {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 20rem;
+  justify-content: center;
+  align-items: center;
 }

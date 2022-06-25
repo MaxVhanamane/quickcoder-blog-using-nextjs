@@ -5,12 +5,9 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   return (
     <>
-      <style jsx global>{`
-        .homeimg {
-          border-radius: 6.25rem;
-        }
+      <style jsx>{`
         .home_img_container {
-          margin: 3rem;
+          margin: 1.5rem;
         }
       `}</style>
       <div className={styles.container}>
@@ -23,13 +20,13 @@ export default function Home() {
         <main className={styles.main}>
           <div className="home_img_container">
             <Image
-              className="homeimg"
+              style={{ borderRadius: "6.25rem" }}
               src="/home_image.jpg"
-              width="208px"
-              height="208px"
+              width="170px"
+              height="170px"
             ></Image>
           </div>
-          <h1 className={styles.title}>Welcome to Quick Coder !</h1>
+          <h1>Welcome to Quick Coder !</h1>
 
           <p className={styles.description}>A blog for Curious Minds.</p>
           <h2>Popular Blogs</h2>

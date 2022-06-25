@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/BlogPost.module.css";
 export default function Blogpost() {
+  const [blog, setBlog] = useState();
   const router = useRouter();
   const { slug } = router.query;
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/blogpost?filename=${slug}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setBlog(data);
+      });
+  }, []);
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1> {slug}</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-          similique iusto aliquid! Assumenda dolore soluta aliquid beatae nihil
-          suscipit nam facere temporibus consequuntur blanditiis, sit
-          perferendis impedit libero ratione. Fugit molestiae vitae corporis
-          alias accusamus sapiente voluptatum impedit quibusdam omnis laboriosam
-          eius illum culpa, quia natus quo officiis? Nesciunt, iste.
-        </p>
+        <h1> {blog && blog.title}</h1>
+        <p>{blog && blog.description}</p>
       </main>
     </div>
   );
