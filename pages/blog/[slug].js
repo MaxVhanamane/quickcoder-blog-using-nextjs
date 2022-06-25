@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import styles from "../../styles/BlogPost.module.css";
+import * as fs from "fs"; // to read directories and files we use fs in node js
+
 export default function Blogpost(serverProps) {
-  const [blog, setBlog] = useState(serverProps.data);
-  // Removing useEffect and using server side rendering.
-  // const router = useRouter();
-  // const { slug } = router.query;
-  // useEffect(() => {
-  //   fetch(`http://localhost:3000/api/blogpost?filename=${slug}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setBlog(data);
-  //     });
-  // }, []);
+  const [blog, setBlog] = useState(serverProps.myBlog);
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -23,16 +14,23 @@ export default function Blogpost(serverProps) {
   );
 }
 
-// This gets called on every request
-export async function getServerSideProps(context) {
-  // To get query on the server side use context.query
-  const { slug } = context.query;
-  // Fetch data from external API
-  const res = await fetch(
-    `http://localhost:3000/api/blogpost?filename=${slug}`
-  );
-  const data = await res.json();
+// Static site generation
 
-  // Pass data to the page via props
-  return { props: { data } };
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { slug: "how-to-learn-python" } },
+      { params: { slug: "how-to-learn-javascript" } },
+      { params: { slug: "how-to-learn-reactjs" } },
+    ],
+    fallback: true, // false or 'blocking'
+  };
+}
+
+export async function getStaticProps(context) {
+  const { slug } = context.params;
+  let myBlog = await fs.promises.readFile(`allblogs/${slug}.json`, "utf-8");
+  return {
+    props: { myBlog: JSON.parse(myBlog) }, // will be passed to the page component as props
+  };
 }

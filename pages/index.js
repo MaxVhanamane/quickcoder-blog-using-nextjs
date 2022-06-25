@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
+// import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -19,12 +19,20 @@ export default function Home() {
 
         <main className={styles.main}>
           <div className="home_img_container">
-            <Image
+            {/* You cannot use the Image component of NextJS while building a static site. So, we’ll replace that with the <img> Here’s the changed image component. */}
+            {/* <Image
               style={{ borderRadius: "6.25rem" }}
               src="/home_image.jpg"
               width="170px"
               height="170px"
-            ></Image>
+            ></Image> */}
+            <img
+              style={{ borderRadius: "6.25rem" }}
+              src="/home_image.jpg"
+              width="170px"
+              height="170px"
+              alt="Home image"
+            />
           </div>
           <h1>Welcome to Quick Coder !</h1>
 
@@ -54,24 +62,6 @@ export default function Home() {
             </p>
           </div>
         </main>
-
-        <footer className={styles.footer}>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by{" "}
-            <span className={styles.logo}>
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                width={72}
-                height={16}
-              />
-            </span>
-          </a>
-        </footer>
       </div>
     </>
   );
