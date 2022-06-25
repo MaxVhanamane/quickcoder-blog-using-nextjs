@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Blog.module.css";
 import Link from "next/link";
-export default function Blog() {
-  const [blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:3000/api/allblogs")
-      .then((response) => response.json())
-      .then((data) => {
-        setBlogs(data);
-      });
-  }, []);
+export default function Blog(serverProps) {
+  const [blogs, setBlogs] = useState(serverProps.data);
+  // Removing useEffect and using server side rendering.
+
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/api/allblogs")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setBlogs(data);
+  //     });
+  // }, []);
 
   return (
     <>
@@ -31,4 +33,14 @@ export default function Blog() {
       </div>
     </>
   );
+}
+
+// This gets called on every request
+export async function getServerSideProps(context) {
+  // Fetch data from external API
+  const res = await fetch("http://localhost:3000/api/allblogs");
+  const data = await res.json();
+
+  // Pass data to the page via props
+  return { props: { data } };
 }
